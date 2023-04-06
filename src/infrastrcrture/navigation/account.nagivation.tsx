@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import { SafeArea } from "../../features/greetings/component/utility/SafeArea";
+import { SafeArea } from "../../components/utility/SafeArea";
 
 export const AccountNavigator = () => {
   return (

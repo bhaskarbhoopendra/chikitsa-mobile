@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { StatusBar as ExpoStatus } from "expo-status-bar";
 import { View } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { SafeArea } from "../component/utility/SafeArea";
+import { SafeArea } from "../../../components/utility/SafeArea";
 
 const Home: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
