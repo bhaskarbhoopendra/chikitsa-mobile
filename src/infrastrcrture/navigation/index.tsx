@@ -4,7 +4,7 @@ import AppNavigator from "./app.navigator";
 
 export const Navigation = () => {
   //This will come from context
-  const isAuthenticated: boolean = true;
+  const isAuthenticated: boolean = false;
 
   return (
     <NavigationContainer>

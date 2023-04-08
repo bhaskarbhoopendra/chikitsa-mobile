@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-chikitsa-staging-104214-authRole",
+      "UnauthRoleArn": "arn:aws:iam::518938707078:role/amplify-chikitsa-staging-104214-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::518938707078:role/amplify-chikitsa-staging-104214-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-chikitsa-staging-104214-deployment",
+      "UnauthRoleName": "amplify-chikitsa-staging-104214-unauthRole",
+      "StackName": "amplify-chikitsa-staging-104214",
+      "StackId": "arn:aws:cloudformation:ap-south-1:518938707078:stack/amplify-chikitsa-staging-104214/06f39380-d5fa-11ed-a78f-0ab13193eaf0",
+      "AmplifyAppId": "d29l488z7zb3pq"
+    },
+    "categories": {
+      "auth": {
+        "chikitsa": {}
+      }
+    }
+  }
+}
