@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { AccountNavigator } from "./account.nagivation";
+import AccountNavigator from "./account.nagivation";
 import AppNavigator from "./app.navigator";
 
 export const Navigation = () => {
