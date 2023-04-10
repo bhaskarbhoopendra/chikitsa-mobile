@@ -1,13 +1,14 @@
-import { View, Text, Alert, TextInput, TouchableOpacity } from "react-native";
+import { View, Alert, TouchableOpacity } from "react-native";
 import { SafeArea } from "../../../components/utility/SafeArea";
 import { useState, useRef, FC } from "react";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import firebase from "firebase/compat/app";
 import { firebaseConfig } from "../../../../config";
-import { Button } from "react-native-paper";
+import { Button, Text, TextInput } from "react-native-paper";
 
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../infrastrcrture/navigation/account.nagivation";
+import styled from "styled-components/native";
 
 export type StackNavigationProps = StackScreenProps<RootStackParamList>;
 
@@ -21,7 +22,7 @@ const Signup: FC<StackNavigationProps> = ({
     try {
       const phoneProvider = new firebase.auth.PhoneAuthProvider();
       const verificationId = await phoneProvider.verifyPhoneNumber(
-        phoneNumber,
+        `+91${phoneNumber}`,
         recapthaVeryfier.current!
       );
       setPhoneNumber("");
@@ -34,25 +35,74 @@ const Signup: FC<StackNavigationProps> = ({
     }
   };
 
+  const Textlable = styled(Text)`
+    margin: 10px;
+  `;
+
+  const VerificationButton = styled(Button)`
+    background-color: ${(props) => props.theme.colors.brand.primary};
+    border-radius: 0;
+    height: 70px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+  `;
+
+  const VerificationLable = styled(Text)`
+    font-size: 18px;
+  `;
+
   return (
     <SafeArea>
-      <View>
+      <View
+        style={{
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          padding: "5%",
+        }}
+      >
         <FirebaseRecaptchaVerifierModal
           ref={recapthaVeryfier}
           firebaseConfig={firebaseConfig}
         />
-        <Text>Login user OTP</Text>
-        <TextInput
-          placeholder="Phone Number with country code"
-          onChangeText={setPhoneNumber}
-          keyboardType="phone-pad"
-          autoComplete="tel"
-          style={{ padding: 5 }}
-        />
+        <Textlable>
+          Let's get Started! Please Enter your Mobile Number
+        </Textlable>
+        <View style={{ flexDirection: "row" }}>
+          <TextInput
+            label="+91"
+            selectionColor="green"
+            activeOutlineColor="green"
+            style={{
+              height: 70,
+              fontSize: 20,
+              width: "20%",
+              backgroundColor: "white",
+            }}
+            editable={false}
+          />
+          <TextInput
+            label="Phone Number"
+            onChangeText={setPhoneNumber}
+            keyboardType="phone-pad"
+            autoComplete="tel"
+            // mode="outlined"
+            selectionColor="green"
+            activeOutlineColor="green"
+            style={{
+              height: 70,
+              fontSize: 20,
+              width: "80%",
+              backgroundColor: "white",
+            }}
+            maxLength={10}
+          />
+        </View>
         <TouchableOpacity onPress={sendVerification}>
-          <Button style={{ padding: 5, backgroundColor: "teal" }}>
-            Send Verification
-          </Button>
+          <VerificationButton mode="contained">
+            <VerificationLable>Send Verification</VerificationLable>
+          </VerificationButton>
         </TouchableOpacity>
       </View>
     </SafeArea>
