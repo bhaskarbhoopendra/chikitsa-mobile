@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import { Provider as PaperProvider } from "react-native-paper";
 import { ThemeProvider } from "styled-components/native";
 import Home from "./src/features/greetings/screens/Home";
