@@ -68,7 +68,7 @@ const OTPScreen: FC<StackNavigationProps> = ({
     <SafeArea>
       <View style={{ flex: 1, justifyContent: "center", padding: "3%" }}>
         <Text style={{ fontSize: 15, marginBottom: 15, marginLeft: 5 }}>
-          Please Enter OTP Received at you Phone Number
+          Please Enter OTP Received at your Phone Number
         </Text>
         <View style={{ flexDirection: "row" }}>
           {[...Array(6)].map((_, i) => (
