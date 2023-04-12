@@ -1,10 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
 import AccountNavigator from "./account.nagivation";
 import AppNavigator from "./app.navigator";
+import { useAuth } from "../../service/hooks/ContextHooks";
 
 export const Navigation = () => {
-  //This will come from context
-  const isAuthenticated: boolean = false;
+  const { isAuthenticated } = useAuth();
 
   return (
     <NavigationContainer>

@@ -5,6 +5,9 @@ import firebase from "firebase/compat/app";
 import { Button, TextInput, Text } from "react-native-paper";
 import { StackNavigationProps } from "./Signup";
 import styled from "styled-components/native";
+import { apiClient } from "../../../api/apiClient";
+import { useAuth } from "../../../service/hooks/ContextHooks";
+import axios from "axios";
 
 const OTPScreen: FC<StackNavigationProps> = ({
   route,
@@ -14,6 +17,8 @@ const OTPScreen: FC<StackNavigationProps> = ({
   const inputs = useRef<(typeof TextInput & { focus: () => void })[]>([]);
   const [values, setValues] = useState(["", "", "", "", "", ""]);
   const code = values.join("");
+  const { setUser, setIsAuthenticated } = useAuth();
+
   const focusPrevField = (index: number) => {
     inputs.current[index - 1]?.focus();
   };
@@ -41,7 +46,18 @@ const OTPScreen: FC<StackNavigationProps> = ({
         verificationId ?? "",
         code
       );
-      await firebase.auth().signInWithCredential(credential);
+      const response = await firebase.auth().signInWithCredential(credential);
+      // console.log(response.user);
+      const phone_number = response?.user?.phoneNumber;
+      console.log({ phone_number });
+      // const res = await apiClient.post("/users", phone_number);
+      const res = await axios.post(
+        "https://0cbb-223-233-64-96.in.ngrok.io/users",
+        phone_number
+      );
+      console.log({ res });
+      setUser(phone_number);
+      setIsAuthenticated(true);
       setValues([]);
       Alert.alert("Login Successfull");
     } catch (error) {
@@ -68,7 +84,7 @@ const OTPScreen: FC<StackNavigationProps> = ({
     <SafeArea>
       <View style={{ flex: 1, justifyContent: "center", padding: "3%" }}>
         <Text style={{ fontSize: 15, marginBottom: 15, marginLeft: 5 }}>
-          Please Enter OTP Received at you Phone Number
+          Please Enter OTP Received at your Phone Number
         </Text>
         <View style={{ flexDirection: "row" }}>
           {[...Array(6)].map((_, i) => (

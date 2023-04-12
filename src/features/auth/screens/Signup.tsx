@@ -40,7 +40,7 @@ const Signup: FC<StackNavigationProps> = ({
   `;
 
   const VerificationButton = styled(Button)`
-    background-color: ${(props) => props.theme.colors.brand.primary};
+    background-color: ${(props) => props.theme.colors.brand.secondary};
     border-radius: 0;
     height: 70px;
     margin-top: 20px;
@@ -50,6 +50,7 @@ const Signup: FC<StackNavigationProps> = ({
 
   const VerificationLable = styled(Text)`
     font-size: 18px;
+    color: white;
   `;
 
   return (
