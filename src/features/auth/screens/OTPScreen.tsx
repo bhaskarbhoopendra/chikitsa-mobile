@@ -1,5 +1,5 @@
 import { useState, FC, useRef } from "react";
-import { View, Alert, TouchableOpacity } from "react-native";
+import { View, Alert, TouchableOpacity, Image } from "react-native";
 import { SafeArea } from "../../../components/utility/SafeArea";
 import firebase from "firebase/compat/app";
 import { Button, TextInput, Text } from "react-native-paper";
@@ -8,6 +8,7 @@ import styled from "styled-components/native";
 import { apiClient } from "../../../api/apiClient";
 import { useAuth } from "../../../service/hooks/ContextHooks";
 import axios from "axios";
+import { LinearGradient } from "expo-linear-gradient";
 
 const OTPScreen: FC<StackNavigationProps> = ({
   route,
@@ -82,10 +83,27 @@ const OTPScreen: FC<StackNavigationProps> = ({
 
   return (
     <SafeArea>
-      <View style={{ flex: 1, justifyContent: "center", padding: "3%" }}>
-        <Text style={{ fontSize: 15, marginBottom: 15, marginLeft: 5 }}>
-          Please Enter OTP Received at your Phone Number
+      <LinearGradient
+        colors={["#36F0AE", "#0EBE7F"]}
+        style={{
+          height: 400,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 20,
+        }}
+      >
+        <Image
+          style={{ marginLeft: 50, marginBottom: 15 }}
+          source={require("../../../../assets/phoneverify.png")}
+        />
+        <Text style={{ fontSize: 35, color: "white" }}>Verfication</Text>
+        <Text style={{ color: "white", marginTop: 10, fontSize: 15 }}>
+          Enter Your OTP Code Number
         </Text>
+      </LinearGradient>
+
+      <View style={{ flex: 1, justifyContent: "flex-start", padding: "3%" }}>
         <View style={{ flexDirection: "row" }}>
           {[...Array(6)].map((_, i) => (
             <TextInput
